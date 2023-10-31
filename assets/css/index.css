@@ -41,19 +41,22 @@ body {
 .video-src.hide {
   display: none;
 }
-.btns {
+.video-btns {
   width: 100%;
   position: absolute;
   bottom: 100px;
+  z-index: 2;
+}
+.video-btns .btns {
   display: flex;
   justify-content: space-evenly;
   padding: 0 10px;
   flex-wrap: wrap;
   gap: 10px;
-  z-index: 2;
+  margin-bottom: 10px ;
 }
 .btns button {
-  min-width: 100px;
+  min-width: 120px;
   padding: 6px 8px;
   cursor: pointer;
   color: white;

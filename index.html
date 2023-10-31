@@ -15,7 +15,6 @@
         position: relative;
         width: 450px;
         height: 100vh;
-        transition: opacity 0.5s ease; /* Add transition for opacity */
         margin: auto;
       }
 
@@ -54,14 +53,12 @@
         border-radius: 50px;
         border: 1px solid rgb(252, 252, 252);
       }
-      .video.fade-out {
-        opacity: 0;
-      }
+        
     </style>
   </head>
   <body>
     <div class="video">
-      <video class="video-src d-none"  autoplay loop>
+      <video class="video-src"  controls  loop>
         <source
           src="assets/videos/WhatsApp Video 2023-10-30 at 11.39.53 PM.mp4"
           type="video/mp4"
@@ -73,12 +70,7 @@
         >
         </span>
       </video>
-      <video class="video-src" muted autoplay loop>
-        <source
-          src="assets/videos/After Effect - Countdown 10 seconds.mp4"
-          type="video/mp4"
-        />
-      </video>
+   
       <div class="btns">
         <button
           data-src="assets/videos/After Effect - Countdown 10 seconds.mp4"
@@ -118,7 +110,6 @@
         video.removeAttribute('loop');
         video.load(); // Reload the video to apply the new source
         video.play(); // Play the new video
-        video.classList.remove('fade-out');
       }
 
       btns.forEach((btn) => {
@@ -136,7 +127,6 @@
         defaultVideo.setAttribute('loop', '');
         video.load();
         video.play();
-        video.classList.remove('fade-out');
       });
     </script>
   </body>

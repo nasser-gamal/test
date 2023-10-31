@@ -104,7 +104,13 @@
         hideAllVideos();
         let currentVideo = document.getElementById(e.target.dataset.id);
         currentVideo.classList.remove('hide');
-        currentVideo.load(); // Reload the video to apply the new source
+
+        // If the video hasn't been preloaded, preload it
+        if (!currentVideo.hasAttribute('data-preloaded')) {
+          currentVideo.load();
+          currentVideo.setAttribute('data-preloaded', 'true');
+        }
+        currentVideo.load();
         currentVideo.play(); // Play the new video
       }
 
@@ -120,14 +126,12 @@
       }
 
       videos.forEach((video) => {
-        video.addEventListener('timeupdate', () => {
-          // Check if the video has reached the end (time >= duration)
-          if (video.currentTime >= video.duration) {
-            hideAllVideos();
-            defaultVideo.classList.remove('hide');
-            defaultVideo.load(); // Reload the video to apply the new source
-            defaultVideo.play(); // Play the new video
-          }
+        video.addEventListener('ended', () => {
+          hideAllVideos();
+          defaultVideo.classList.remove('hide');
+          currentVideo.setAttribute('data-preloaded', 'true');
+          defaultVideo.load(); // Reload the video to apply the new source
+          defaultVideo.play(); // Play the new video
         });
       });
     </script>

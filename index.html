@@ -13,23 +13,27 @@
 
       .video {
         position: relative;
-        width: fit-content;
+        width: 450px;
         height: 100vh;
         transition: opacity 0.5s ease; /* Add transition for opacity */
         margin: auto;
       }
 
       .video-src {
+        width: 100%;
         height: 100%;
         object-fit: fill;
       }
       @media (max-width: 767px) {
+        .video {
+          width: 100%;
+        }
         .video-src {
           width: 100%;
         }
       }
       .btns {
-        width: auto;
+        width: 100%;
         position: absolute;
         bottom: 100px;
         display: flex;
@@ -39,9 +43,13 @@
         gap: 10px;
       }
       .btns button {
-        min-width: 100px;
-        padding: 5px;
+        min-width: 140px;
+        padding: 10px 8px;
         cursor: pointer;
+        color: white;
+        background-color: #15536f;
+        border-radius: 50px;
+        border: 1px solid rgb(252, 252, 252);
       }
       .video.fade-out {
         opacity: 0;
@@ -50,7 +58,7 @@
   </head>
   <body>
     <div class="video">
-      <video class="video-src" autoplay loop plays-inline>
+      <video class="video-src" autoplay  loop plays-inline>
         <source
           src="assets/videos/WhatsApp Video 2023-10-30 at 11.39.53 PM.mp4"
           type="video/mp4"
@@ -62,20 +70,20 @@
         ></span>
       </video>
       <div class="btns">
-        <button data-src="assets/videos/test.mp4" data-type="video/mp4">
+        <button data-src="assets/videos/After Effect - Countdown 10 seconds.mp4" data-type="video/mp4">
           test1
         </button>
         <button data-src="assets/videos/test2.mp4" data-type="video/mp4">
           test2
         </button>
         <button
-          data-src="assets/videos/WhatsApp Video 2023-10-30 at 11.39.53 PM.mp4"
+          data-src="assets/videos/‫ فيديو هيرجعك ١٥ سنة ورا ❤  فى 5 ثوانى.mp4"
           data-type="video/mp4"
         >
           test3
         </button>
         <button
-          data-src="assets/videos/WhatsApp Video 2023-10-30 at 11.39.53 PM.mp4"
+          data-src="assets/videos/فيديو 5 ثواني.mp4"
           data-type="video/mp4"
         >
           test4
@@ -99,7 +107,7 @@
           video.load(); // Reload the video to apply the new source
           video.play(); // Play the new video
           video.classList.remove('fade-out');
-        }, 1000);
+        }, 500);
       }
 
       btns.forEach((btn) => {
@@ -119,7 +127,7 @@
           video.load();
           video.play();
           video.classList.remove('fade-out');
-        }, 1000);
+        }, 500);
       });
     </script>
   </body>

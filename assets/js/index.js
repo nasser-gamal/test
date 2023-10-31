@@ -2,6 +2,7 @@ const btns = document.querySelectorAll('.btns button');
 const defaultVideo = document.querySelector('.default-video');
 const videos = document.querySelectorAll('.video video');
 
+
 function changeVideoSource(e) {
   hideAllVideos();
   let currentVideo = document.getElementById(e.target.dataset.id);

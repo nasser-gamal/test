@@ -16,6 +16,8 @@
         width: 450px;
         height: 100vh;
         margin: auto;
+        background-image: url(assets/videos/man.jpg);
+        background-position: center;
       }
 
       .video-src {
@@ -78,7 +80,7 @@
       <video class="video-src hide" id="video-three">
         <source src="assets/videos/فيديو 5 ثواني.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> 
       <video class="video-src hide" id="video-four">
         <source
           src="assets/videos/‫ فيديو هيرجعك ١٥ سنة ورا ❤  فى 5 ثوانى.mp4"
@@ -104,13 +106,7 @@
         hideAllVideos();
         let currentVideo = document.getElementById(e.target.dataset.id);
         currentVideo.classList.remove('hide');
-
-        // If the video hasn't been preloaded, preload it
-        if (!currentVideo.hasAttribute('data-preloaded')) {
-          currentVideo.load();
-          currentVideo.setAttribute('data-preloaded', 'true');
-        }
-        currentVideo.load();
+        currentVideo.load(); // Reload the video to apply the new source
         currentVideo.play(); // Play the new video
       }
 
@@ -126,12 +122,14 @@
       }
 
       videos.forEach((video) => {
-        video.addEventListener('ended', () => {
-          hideAllVideos();
-          defaultVideo.classList.remove('hide');
-          currentVideo.setAttribute('data-preloaded', 'true');
-          defaultVideo.load(); // Reload the video to apply the new source
-          defaultVideo.play(); // Play the new video
+        video.addEventListener('timeupdate', () => {
+          // Check if the video has reached the end (time >= duration)
+          if (video.currentTime >= video.duration) {
+            hideAllVideos();
+            defaultVideo.classList.remove('hide');
+            defaultVideo.load(); // Reload the video to apply the new source
+            defaultVideo.play(); // Play the new video
+          }
         });
       });
     </script>

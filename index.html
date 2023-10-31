@@ -4,68 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-
-      .video {
-        position: relative;
-        width: 450px;
-        height: 100vh;
-        margin: auto;
-      }
-      .bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-      }
-      .video-src {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-        z-index: 1;
-      }
-      @media (max-width: 767px) {
-        .video {
-          width: 100%;
-        }
-        .video-src {
-          width: 100%;
-        }
-      }
-      .video-src.hide {
-        display: none;
-      }
-      .btns {
-        width: 100%;
-        position: absolute;
-        bottom: 100px;
-        display: flex;
-        justify-content: space-evenly;
-        padding: 0 10px;
-        flex-wrap: wrap;
-        gap: 10px;
-        z-index: 2;
-      }
-      .btns button {
-        min-width: 140px;
-        padding: 10px 8px;
-        cursor: pointer;
-        color: white;
-        background-color: #15536f;
-        border-radius: 50px;
-        border: 1px solid rgb(252, 252, 252);
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/index.css" />
   </head>
   <body>
     <div class="video">
@@ -113,46 +52,6 @@
       </div>
     </div>
 
-    <div style="display: flex">
-      <div>onboard</div>
-      <div>borad name</div>
-    </div>
-
-    <script>
-      const btns = document.querySelectorAll('.btns button');
-      const defaultVideo = document.querySelector('.default-video');
-      const videos = document.querySelectorAll('.video video');
-
-      function changeVideoSource(e) {
-        hideAllVideos();
-        let currentVideo = document.getElementById(e.target.dataset.id);
-        currentVideo.classList.remove('hide');
-        currentVideo.load(); // Reload the video to apply the new source
-        currentVideo.play(); // Play the new video
-      }
-
-      btns.forEach((btn) => {
-        btn.addEventListener('click', changeVideoSource);
-      });
-
-      function hideAllVideos() {
-        videos.forEach((video) => {
-          video.classList.add('hide');
-          video.pause(); // Pause the video to stop the sound
-        });
-      }
-
-      videos.forEach((video) => {
-        video.addEventListener('timeupdate', () => {
-          // Check if the video has reached the end (time >= duration)
-          if (video.currentTime >= video.duration) {
-            hideAllVideos();
-            defaultVideo.classList.remove('hide');
-            defaultVideo.load(); // Reload the video to apply the new source
-            defaultVideo.play(); // Play the new video
-          }
-        });
-      });
-    </script>
+    <script src="assets/js/index.js"></script>
   </body>
 </html>

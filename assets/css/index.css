@@ -30,7 +30,7 @@ body {
   object-fit: fill;
   z-index: 1;
 }
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .video {
     width: 100%;
   }
@@ -49,10 +49,10 @@ body {
 }
 .video-btns .btns {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   padding: 0 10px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   margin-bottom: 10px ;
 }
 .btns button {

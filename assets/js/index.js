@@ -2,7 +2,6 @@ const btns = document.querySelectorAll('.btns button');
 const defaultVideo = document.querySelector('.default-video');
 const videos = document.querySelectorAll('.video video');
 
-
 function changeVideoSource(e) {
   hideAllVideos();
   let currentVideo = document.getElementById(e.target.dataset.id);
@@ -30,6 +29,7 @@ videos.forEach((video) => {
       defaultVideo.classList.remove('hide');
       defaultVideo.load(); // Reload the video to apply the new source
       defaultVideo.play(); // Play the new video
+      defaultVideo.muted = false; // Unmute the default video
     }
   });
 });

@@ -31,7 +31,7 @@
           width: 100%;
         }
       }
-      .video-src.d-none {
+      .video-src.hide {
         display: none;
       }
       .btns {
@@ -53,80 +53,82 @@
         border-radius: 50px;
         border: 1px solid rgb(252, 252, 252);
       }
-        
     </style>
   </head>
   <body>
     <div class="video">
-      <video class="video-src"  controls  loop>
+      <video class="video-src default-video" muted autoplay loop>
         <source
           src="assets/videos/WhatsApp Video 2023-10-30 at 11.39.53 PM.mp4"
           type="video/mp4"
         />
-        <span
-          class="default-video"
-          data-src="assets/videos/WhatsApp Video 2023-10-30 at 11.39.53 PM.mp4"
-          data-type="video/mp4"
-        >
-        </span>
+        Your browser does not support the video tag.
       </video>
-   
+      <video class="video-src hide" id="video-one">
+        <source src="assets/videos/test2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <video class="video-src hide" id="video-two">
+        <source
+          src="assets/videos/After Effect - Countdown 10 seconds.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+      <video class="video-src hide" id="video-three">
+        <source src="assets/videos/فيديو 5 ثواني.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <video class="video-src hide" id="video-four">
+        <source
+          src="assets/videos/‫ فيديو هيرجعك ١٥ سنة ورا ❤  فى 5 ثوانى.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+
       <div class="btns">
-        <button
-          data-src="assets/videos/After Effect - Countdown 10 seconds.mp4"
-          data-type="video/mp4"
-        >
-          test1
-        </button>
-        <button data-src="assets/videos/test2.mp4" data-type="video/mp4">
-          test2
-        </button>
-        <button
-          data-src="assets/videos/‫ فيديو هيرجعك ١٥ سنة ورا ❤  فى 5 ثوانى.mp4"
-          data-type="video/mp4"
-        >
-          test3
-        </button>
-        <button
-          data-src="assets/videos/فيديو 5 ثواني.mp4"
-          data-type="video/mp4"
-        >
-          test4
-        </button>
+        <button data-id="video-one">test1</button>
+        <button data-id="video-two">test2</button>
+        <button data-id="video-three">test3</button>
+        <button data-id="video-four">test4</button>
       </div>
     </div>
 
     <script>
       const btns = document.querySelectorAll('.btns button');
       const defaultVideo = document.querySelector('.default-video');
-      const video = document.querySelector('.video video');
+      const videos = document.querySelectorAll('.video video');
 
       function changeVideoSource(e) {
-        video.classList.add('fade-out');
-
-        console.log(e.target.dataset.src);
-        video.src = e.target.dataset.src;
-        video.type = e.target.dataset.type;
-        video.removeAttribute('loop');
-        video.load(); // Reload the video to apply the new source
-        video.play(); // Play the new video
+        hideAllVideos();
+        let currentVideo = document.getElementById(e.target.dataset.id);
+        currentVideo.classList.remove('hide');
+        currentVideo.load(); // Reload the video to apply the new source
+        currentVideo.play(); // Play the new video
       }
 
       btns.forEach((btn) => {
         btn.addEventListener('click', changeVideoSource);
       });
 
-      video.addEventListener('ended', () => {
-        // Add a fade-out class to smoothly hide the current video
-        video.classList.add('fade-out');
+      function hideAllVideos() {
+        videos.forEach((video) => {
+          video.classList.add('hide');
+          video.pause(); // Pause the video to stop the sound
+        });
+      }
 
-        // Set the default video source
-        video.src = defaultVideo.dataset.src;
-        video.type = defaultVideo.dataset.type;
-        // Add 'loop' attribute to the default video
-        defaultVideo.setAttribute('loop', '');
-        video.load();
-        video.play();
+      videos.forEach((video) => {
+        video.addEventListener('timeupdate', () => {
+          // Check if the video has reached the end (time >= duration)
+          if (video.currentTime >= video.duration) {
+            hideAllVideos();
+            defaultVideo.classList.remove('hide');
+            defaultVideo.load(); // Reload the video to apply the new source
+            defaultVideo.play(); // Play the new video
+          }
+        });
       });
     </script>
   </body>

@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 
+body {
+  direction:  rtl;
+}
 .video {
   position: relative;
   width: 450px;
@@ -50,11 +53,12 @@
   z-index: 2;
 }
 .btns button {
-  min-width: 140px;
-  padding: 10px 8px;
+  min-width: 100px;
+  padding: 6px 8px;
   cursor: pointer;
   color: white;
-  background-color: #15536f;
+  background: linear-gradient(to bottom, #047052, #004633);
   border-radius: 50px;
-  border: 1px solid rgb(252, 252, 252);
+  border: 3px solid rgb(252, 252, 252);
+  font-weight: bold;
 }
